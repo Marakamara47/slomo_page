@@ -1,0 +1,237 @@
+// fonts
+@font-face {
+    font-family: Roboto-Medium;
+    src: url(../fonts/Roboto-Medium.ttf);
+    font-style: medium;
+    font-weight: medium;
+}
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(../fonts/Roboto-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Arimo-Bold;
+    src: url(../fonts/Arimo-Bold.ttf);
+    font-style: bold;
+    font-weight: bold;
+}
+@font-face {
+    font-family: Arimo-Regular;
+    src: url(../fonts/Arimo-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+//миксин и переменная для адаптива
+$maxWidth: 1920;//ширина макета
+
+@mixin adaptiv-font($pcSize, $mobSize) {
+ $addSize: $pcSize - $mobSize;//вычислается добавочний размер как разница между мин и макс
+ $maxWidth: $maxWidth - 320;//вычислиние для 
+ font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}//передаются базовый размер шрифта и размер для смартфонов
+
+@mixin input-field ($width, $height, $brdRad){
+    width: $width;
+    height: $height;
+    background: #FFFFFF;
+    border-radius: $brdRad;
+    text-indent: 50px
+}
+@mixin input-btn ($bkgColor, $width, $height, $brdRad){
+    @include adaptiv-font(24, 18);
+    font-family: Arimo-Regular;
+    width: $width;
+    height: $height;
+    border-radius: $brdRad;
+    background-color: $bkgColor;
+}
+//--------------------------------Login page
+// GENERAL LOGIN
+
+.header{
+    display: flex;
+    flex-direction: row-reverse;
+    height: 106px;
+    .header_data_block{
+        display: flex;
+        align-items: center;
+        p{
+            font-family: Arimo-Regular;
+            @include adaptiv-font(16, 12);
+            color: #009C41;
+            line-height: 18px;
+            align-items: center;
+            text-align: right;
+            width: 180px;
+        }
+        img{
+            width: 38px;
+            height: 40px;
+            padding: 8px;
+            background: #009C41;
+            border-radius: 10px;
+            margin: 0 20px;
+        }
+    }
+}
+.main{
+    .small_block{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        background-color: #F5F5F5;
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        height: 76px;
+        span{   
+            font-family: Arimo-Regular;
+            @include adaptiv-font(16, 12);
+            color: #5F5F5F;
+            padding-right: 62px;
+        }
+    }
+    .praimal_block{
+        height: 936px;
+        background: rgba(33, 50, 94, 0.8);
+        background-image: url(../images/backgraund/Reasons-your-vehicle-needs-a-dash-camera.jpg);
+        background-blend-mode: soft-light;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: right;
+        .praimal_block_content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .block_heading{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                margin-top: 48px;
+                max-width: 1076px;
+                border-bottom: 5px solid #FFFFFF;
+                border-radius: 2px;
+                h1{
+                    @include adaptiv-font(48, 24);
+                    font-family: Arimo-Regular;
+                    color: #ffffff;
+                }
+                img{
+                    margin-left: 30px;
+                }
+            }
+            h2{
+                @include adaptiv-font(24, 24);
+                font-family: Arimo-Regular;
+                color: #FFFFFF;
+                margin-top: 72px;
+            }
+            .form_block{
+                @include adaptiv-font(24, 18);
+                font-family: Arimo-Regular;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 57px;
+                label{
+                    margin-bottom: 15px;
+                    color: #FFFFFF;
+                    padding-left: 20%;
+                }
+                .user_name{
+                    @include input-field (350px, 58px, 35px);
+                    background-image: url(../images/icons/vector.png);
+                    background-repeat: no-repeat;
+                    background-position: 20px;
+                }
+                .user_password{
+                    @include input-field (350px, 58px, 35px);
+                    margin-bottom: 87px;
+                }
+            }
+            .form_apply{
+                @include input-btn(#009C41, 350px, 58px, 35px);
+                margin-left: 40px;
+            }
+            .form_cancel{
+                @include input-btn(#C4C4C4, 350px, 58px, 35px);
+                background-image: url(../images/icons/polygon.png);
+                background-repeat: no-repeat;
+                background-position: 100px;
+            }
+        }
+    }
+}
+
+// MOBILE LOGIN
+
+@media (max-width: 375px) {
+    .header{
+        height: 45px;
+        .header_data_block{
+            p{
+                width: 140px;
+            }
+        }
+    }
+    .main{
+        .small_block{
+            background-color: #FFFFFF;
+            box-shadow: none;
+            height: 10px;
+            margin-bottom: 10px;
+            span{   
+                color: #FF7728;
+                padding-right: 78px;
+            }
+        }
+        .praimal_block{
+            height: 644px;
+            background: #21325E;
+            background-image: url(../images/backgraund/slider.jpg);
+            background-blend-mode: soft-light;
+            background-repeat: no-repeat;
+            background-size: cover;
+            .praimal_block_content{
+                .block_heading{
+                    margin-top: 13px;
+                    max-width: 329px;
+                    border-bottom: 3px solid #FFFFFF;
+                    padding-bottom: 12px;
+                    img{
+                        width: 39px;
+                        margin-left: 5px;
+                    }
+                }
+                h2{
+                    width: 265px;
+                    height: 56px;
+                    text-align: center;
+                }
+                .form_block{
+                    margin-top: 57px;
+                    .user_name{
+                        @include input-field (330px, 40px, 30px);
+                        background-image: url(../images/icons/vector.png);
+                        background-repeat: no-repeat;
+                        background-position: 20px;
+                    }
+                    .user_password{
+                        @include input-field (330px, 40px, 30px);
+                        margin-bottom: 92px;
+                    }
+                }
+                .form_apply{
+                    @include input-btn(#009C41, 156px, 40px, 30px);
+                    margin-left: 18px;
+                }
+                .form_cancel{
+                    @include input-btn(#C4C4C4, 156px, 40px, 30px);
+                    background-position: 30px;
+                }
+            }
+        }
+    }
+}
+
